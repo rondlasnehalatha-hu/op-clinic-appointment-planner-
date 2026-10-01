@@ -6,7 +6,7 @@ let appointments = [
         token: "OP-001",
         patient: "Ravi Kumar",
         age: 35,
-        doctor: "Dr. Priya",
+        doctor: "Dr. Sneha",
         department: "General Medicine",
         date: "2026-10-01",
         time: "09:30",
