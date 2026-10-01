@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OP Clinic Appointment Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🏥 OP Clinic</div>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#appointments">Appointments</a>
+        <a href="#doctors">Doctors</a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="dashboard">
+        <div>
+            <h1>Outpatient Clinic</h1>
+            <p>Appointment Planner & Patient Management</p>
+        </div>
+
+        <button class="primary-btn" onclick="openModal()">
+            + New Appointment
+        </button>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats">
+        <div class="stat-card">
+            <span>📅</span>
+            <div>
+                <h3 id="totalAppointments">0</h3>
+                <p>Total Appointments</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <span>⏳</span>
+            <div>
+                <h3 id="waitingPatients">0</h3>
+                <p>Waiting</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <span>✅</span>
+            <div>
+                <h3 id="completedAppointments">0</h3>
+                <p>Completed</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <span>👨‍⚕️</span>
+            <div>
+                <h3 id="doctorCount">4</h3>
+                <p>Doctors</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointments -->
+    <section id="appointments" class="content-card">
+
+        <div class="section-header">
+            <div>
+                <h2>Today's Appointments</h2>
+                <p>Manage outpatient appointments</p>
+            </div>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search patient..."
+                onkeyup="displayAppointments()"
+            >
+        </div>
+
+        <div class="filters">
+            <select id="doctorFilter" onchange="displayAppointments()">
+                <option value="">All Doctors</option>
+                <option value="Dr. Priya">Dr. Priya</option>
+                <option value="Dr. Kumar">Dr. Kumar</option>
+                <option value="Dr. Anitha">Dr. Anitha</option>
+                <option value="Dr. Rahul">Dr. Rahul</option>
+            </select>
+
+            <select id="statusFilter" onchange="displayAppointments()">
+                <option value="">All Status</option>
+                <option value="Waiting">Waiting</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Patient</th>
+                        <th>Age</th>
+                        <th>Doctor</th>
+                        <th>Department</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="appointmentTable"></tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <!-- Doctors -->
+    <section id="doctors" class="content-card">
+        <h2>Doctors</h2>
+
+        <div class="doctor-grid">
+
+            <div class="doctor-card">
+                <div class="doctor-icon">👩‍⚕️</div>
+                <h3>Dr. Priya</h3>
+                <p>General Medicine</p>
+                <span>Mon - Fri | 9:00 AM - 1:00 PM</span>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-icon">👨‍⚕️</div>
+                <h3>Dr. Kumar</h3>
+                <p>Cardiology</p>
+                <span>Mon - Sat | 10:00 AM - 2:00 PM</span>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-icon">👩‍⚕️</div>
+                <h3>Dr. Anitha</h3>
+                <p>Pediatrics</p>
+                <span>Mon - Fri | 9:30 AM - 1:30 PM</span>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-icon">👨‍⚕️</div>
+                <h3>Dr. Rahul</h3>
+                <p>Orthopedics</p>
+                <span>Tue - Sat | 11:00 AM - 3:00 PM</span>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<!-- Appointment Modal -->
+<div id="appointmentModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>New Appointment</h2>
+            <button onclick="closeModal()" class="close-btn">&times;</button>
+        </div>
+
+        <form id="appointmentForm">
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <input
+                        type="text"
+                        id="patientName"
+                        placeholder="Enter patient name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input
+                        type="number"
+                        id="patientAge"
+                        min="1"
+                        max="120"
+                        placeholder="Age"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Doctor</label>
+
+                    <select id="doctor" required>
+                        <option value="">Select Doctor</option>
+                        <option value="Dr. Priya">Dr. Priya</option>
+                        <option value="Dr. Kumar">Dr. Kumar</option>
+                        <option value="Dr. Anitha">Dr. Anitha</option>
+                        <option value="Dr. Rahul">Dr. Rahul</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Department</label>
+
+                    <select id="department" required>
+                        <option value="">Select Department</option>
+                        <option value="General Medicine">General Medicine</option>
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Pediatrics">Pediatrics</option>
+                        <option value="Orthopedics">Orthopedics</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="time" id="appointmentTime" required>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Reason for Visit</label>
+                <textarea
+                    id="reason"
+                    placeholder="Enter reason for visit"
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="primary-btn full-width">
+                Book Appointment
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 OP Clinic Appointment Planner</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
