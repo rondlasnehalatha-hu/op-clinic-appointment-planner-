@@ -1,111 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OP Clinic Appointment Planner</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>OP Clinic Appointment Planner</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1e293b;
+}
+
+/* HEADER */
+.header {
+    background: white;
+    padding: 22px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.logo h1 {
+    color: #0f766e;
+    font-size: 27px;
+}
+
+.logo p {
+    color: #64748b;
+    margin-top: 5px;
+}
+
+.new-btn {
+    background: #0f766e;
+    color: white;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.new-btn:hover {
+    background: #115e59;
+}
+
+/* MAIN */
+.container {
+    width: 88%;
+    max-width: 1250px;
+    margin: 30px auto;
+}
+
+/* STATISTICS */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.blue {
+    background: #dbeafe;
+}
+
+.orange {
+    background: #ffedd5;
+}
+
+.green {
+    background: #dcfce7;
+}
+
+.purple {
+    background: #ede9fe;
+}
+
+.stat h2 {
+    font-size: 27px;
+}
+
+.stat p {
+    color: #64748b;
+    margin-top: 4px;
+}
+
+/* SECTIONS */
+.section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 30px;
+}
+
+.section-header {
+    margin-bottom: 22px;
+}
+
+.section-header h2 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.section-header p {
+    color: #64748b;
+}
+
+/* FILTERS */
+.filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.filters select {
+    padding: 11px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: white;
+    min-width: 160px;
+    outline: none;
+}
+
+/* TABLE */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+thead {
+    background: #f8fafc;
+}
+
+th {
+    text-align: left;
+    padding: 14px;
+    color: #475569;
+    font-size: 14px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+td {
+    padding: 15px 14px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+.token {
+    color: #0f766e;
+    font-weight: bold;
+}
+
+.patient {
+    font-weight: bold;
+}
+
+/* STATUS */
+.status {
+    display: inline-block;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.waiting {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.confirmed {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.completed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ACTION */
+.action-btn {
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.complete-btn {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.cancel-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* DOCTORS */
+.doctors {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.doctor-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 22px;
+    background: #ffffff;
+}
+
+.doctor-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.doctor-icon {
+    width: 55px;
+    height: 55px;
+    background: #ccfbf1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.doctor-card h3 {
+    margin-bottom: 5px;
+}
+
+.doctor-department {
+    color: #0f766e;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.doctor-time {
+    margin-top: 17px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: white;
+    width: 90%;
+    max-width: 650px;
+    border-radius: 14px;
+    padding: 28px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.close {
+    border: none;
+    background: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 17px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    outline: none;
+}
+
+.save-btn {
+    margin-top: 20px;
+    background: #0f766e;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #0f172a;
+    color: white;
+    margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .doctors {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .doctors {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">🏥 OP Clinic</div>
+<!-- HEADER -->
+<header class="header">
 
-    <nav>
-        <a href="#dashboard">Dashboard</a>
-        <a href="#appointments">Appointments</a>
-        <a href="#doctors">Doctors</a>
-    </nav>
+    <div class="logo">
+        <h1>🏥 Outpatient Clinic</h1>
+        <p>Appointment Planner & Patient Management</p>
+    </div>
+
+    <button class="new-btn" onclick="openModal()">
+        + New Appointment
+    </button>
+
 </header>
 
-<main>
 
-    <!-- Dashboard -->
-    <section id="dashboard" class="dashboard">
-        <div>
-            <h1>Outpatient Clinic</h1>
-            <p>Appointment Planner & Patient Management</p>
-        </div>
+<div class="container">
 
-        <button class="primary-btn" onclick="openModal()">
-            + New Appointment
-        </button>
-    </section>
+    <!-- STATISTICS -->
+    <div class="stats">
 
-    <!-- Statistics -->
-    <section class="stats">
-        <div class="stat-card">
-            <span>📅</span>
+        <div class="stat">
+            <div class="stat-icon blue">📅</div>
             <div>
-                <h3 id="totalAppointments">0</h3>
+                <h2 id="totalAppointments">4</h2>
                 <p>Total Appointments</p>
             </div>
         </div>
 
-        <div class="stat-card">
-            <span>⏳</span>
+        <div class="stat">
+            <div class="stat-icon orange">⏳</div>
             <div>
-                <h3 id="waitingPatients">0</h3>
+                <h2 id="waitingCount">2</h2>
                 <p>Waiting</p>
             </div>
         </div>
 
-        <div class="stat-card">
-            <span>✅</span>
+        <div class="stat">
+            <div class="stat-icon green">✅</div>
             <div>
-                <h3 id="completedAppointments">0</h3>
+                <h2 id="completedCount">1</h2>
                 <p>Completed</p>
             </div>
         </div>
 
-        <div class="stat-card">
-            <span>👨‍⚕️</span>
+        <div class="stat">
+            <div class="stat-icon purple">👨‍⚕️</div>
             <div>
-                <h3 id="doctorCount">4</h3>
+                <h2>4</h2>
                 <p>Doctors</p>
             </div>
         </div>
-    </section>
 
-    <!-- Appointments -->
-    <section id="appointments" class="content-card">
+    </div>
+
+
+    <!-- APPOINTMENTS -->
+    <section class="section">
 
         <div class="section-header">
-            <div>
-                <h2>Today's Appointments</h2>
-                <p>Manage outpatient appointments</p>
-            </div>
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search patient..."
-                onkeyup="displayAppointments()"
-            >
+            <h2>Today's Appointments</h2>
+
+            <p>
+                Manage outpatient appointments
+            </p>
+
         </div>
 
+
+        <!-- FILTERS -->
         <div class="filters">
-            <select id="doctorFilter" onchange="displayAppointments()">
-                <option value="">All Doctors</option>
-                <option value="Dr. Sneha">Dr. Sneha</option>
-                <option value="Dr. Kumar">Dr. Kumar</option>
-                <option value="Dr. Anitha">Dr. Anitha</option>
-                <option value="Dr. Rahul">Dr. Rahul</option>
+
+            <select id="doctorFilter"
+                    onchange="filterAppointments()">
+
+                <option value="all">
+                    All Doctors
+                </option>
+
+                <option value="Dr. Sneha">
+                    Dr. Sneha
+                </option>
+
+                <option value="Dr. Kumar">
+                    Dr. Kumar
+                </option>
+
+                <option value="Dr. Anitha">
+                    Dr. Anitha
+                </option>
+
+                <option value="Dr. Rahul">
+                    Dr. Rahul
+                </option>
+
             </select>
 
-            <select id="statusFilter" onchange="displayAppointments()">
-                <option value="">All Status</option>
-                <option value="Waiting">Waiting</option>
-                <option value="Confirmed">Confirmed</option>
-                <option value="Completed">Completed</option>
-                <option value="Cancelled">Cancelled</option>
+
+            <select id="statusFilter"
+                    onchange="filterAppointments()">
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="Waiting">
+                    Waiting
+                </option>
+
+                <option value="Confirmed">
+                    Confirmed
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+                <option value="Cancelled">
+                    Cancelled
+                </option>
+
             </select>
+
         </div>
 
+
+        <!-- TABLE -->
         <div class="table-container">
+
             <table>
+
                 <thead>
+
                     <tr>
                         <th>Token</th>
                         <th>Patient</th>
@@ -116,156 +557,715 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
+
                 </thead>
 
-                <tbody id="appointmentTable"></tbody>
+                <tbody id="appointmentTable">
+                </tbody>
+
             </table>
+
         </div>
 
     </section>
 
-    <!-- Doctors -->
-    <section id="doctors" class="content-card">
-        <h2>Doctors</h2>
 
-        <div class="doctor-grid">
+    <!-- DOCTORS -->
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>Doctors</h2>
+
+        </div>
+
+
+        <div class="doctors">
 
             <div class="doctor-card">
-                <div class="doctor-icon">👩‍⚕️</div>
-                <h3>Dr. Sneha</h3>
-                <p>General Medicine</p>
-                <span>Mon - Fri | 9:00 AM - 1:00 PM</span>
+
+                <div class="doctor-top">
+
+                    <div class="doctor-icon">
+                        👩‍⚕️
+                    </div>
+
+                    <div>
+                        <h3>Dr. Sneha</h3>
+                        <p class="doctor-department">
+                            General Medicine
+                        </p>
+                    </div>
+
+                </div>
+
+                <p class="doctor-time">
+                    Mon - Fri | 9:00 AM - 1:00 PM
+                </p>
+
             </div>
 
-            <div class="doctor-card">
-                <div class="doctor-icon">👨‍⚕️</div>
-                <h3>Dr. Kumar</h3>
-                <p>Cardiology</p>
-                <span>Mon - Sat | 10:00 AM - 2:00 PM</span>
-            </div>
 
             <div class="doctor-card">
-                <div class="doctor-icon">👩‍⚕️</div>
-                <h3>Dr. Anitha</h3>
-                <p>Pediatrics</p>
-                <span>Mon - Fri | 9:30 AM - 1:30 PM</span>
+
+                <div class="doctor-top">
+
+                    <div class="doctor-icon">
+                        👨‍⚕️
+                    </div>
+
+                    <div>
+                        <h3>Dr. Kumar</h3>
+                        <p class="doctor-department">
+                            Cardiology
+                        </p>
+                    </div>
+
+                </div>
+
+                <p class="doctor-time">
+                    Mon - Sat | 10:00 AM - 2:00 PM
+                </p>
+
             </div>
 
+
             <div class="doctor-card">
-                <div class="doctor-icon">👨‍⚕️</div>
-                <h3>Dr. Rahul</h3>
-                <p>Orthopedics</p>
-                <span>Tue - Sat | 11:00 AM - 3:00 PM</span>
+
+                <div class="doctor-top">
+
+                    <div class="doctor-icon">
+                        👩‍⚕️
+                    </div>
+
+                    <div>
+                        <h3>Dr. Anitha</h3>
+                        <p class="doctor-department">
+                            Pediatrics
+                        </p>
+                    </div>
+
+                </div>
+
+                <p class="doctor-time">
+                    Mon - Fri | 9:30 AM - 1:30 PM
+                </p>
+
+            </div>
+
+
+            <div class="doctor-card">
+
+                <div class="doctor-top">
+
+                    <div class="doctor-icon">
+                        👨‍⚕️
+                    </div>
+
+                    <div>
+                        <h3>Dr. Rahul</h3>
+                        <p class="doctor-department">
+                            Orthopedics
+                        </p>
+                    </div>
+
+                </div>
+
+                <p class="doctor-time">
+                    Tue - Sat | 11:00 AM - 3:00 PM
+                </p>
+
             </div>
 
         </div>
+
     </section>
 
-</main>
+</div>
 
-<!-- Appointment Modal -->
-<div id="appointmentModal" class="modal">
 
-    <div class="modal-content">
+<!-- NEW APPOINTMENT MODAL -->
+
+<div class="modal" id="appointmentModal">
+
+    <div class="modal-box">
 
         <div class="modal-header">
+
             <h2>New Appointment</h2>
-            <button onclick="closeModal()" class="close-btn">&times;</button>
+
+            <button class="close"
+                    onclick="closeModal()">
+                ×
+            </button>
+
         </div>
+
 
         <form id="appointmentForm">
 
-            <div class="form-row">
+            <div class="form-grid">
 
                 <div class="form-group">
+
                     <label>Patient Name</label>
+
                     <input
                         type="text"
                         id="patientName"
                         placeholder="Enter patient name"
                         required
                     >
+
                 </div>
 
+
                 <div class="form-group">
+
                     <label>Age</label>
+
                     <input
                         type="number"
                         id="patientAge"
-                        min="1"
-                        max="120"
                         placeholder="Age"
                         required
                     >
+
                 </div>
 
-            </div>
-
-            <div class="form-row">
 
                 <div class="form-group">
+
                     <label>Doctor</label>
 
                     <select id="doctor" required>
-                        <option value="">Select Doctor</option>
-                        <option value="Dr.  Sneha">Dr. Sneha</option>
-                        <option value="Dr. Kumar">Dr. Kumar</option>
-                        <option value="Dr. Anitha">Dr. Anitha</option>
-                        <option value="Dr. Rahul">Dr. Rahul</option>
+
+                        <option value="">
+                            Select Doctor
+                        </option>
+
+                        <option>
+                            Dr. Sneha
+                        </option>
+
+                        <option>
+                            Dr. Kumar
+                        </option>
+
+                        <option>
+                            Dr. Anitha
+                        </option>
+
+                        <option>
+                            Dr. Rahul
+                        </option>
+
                     </select>
+
                 </div>
 
+
                 <div class="form-group">
+
                     <label>Department</label>
 
                     <select id="department" required>
-                        <option value="">Select Department</option>
-                        <option value="General Medicine">General Medicine</option>
-                        <option value="Cardiology">Cardiology</option>
-                        <option value="Pediatrics">Pediatrics</option>
-                        <option value="Orthopedics">Orthopedics</option>
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+                        <option>
+                            General Medicine
+                        </option>
+
+                        <option>
+                            Cardiology
+                        </option>
+
+                        <option>
+                            Pediatrics
+                        </option>
+
+                        <option>
+                            Orthopedics
+                        </option>
+
                     </select>
+
                 </div>
 
-            </div>
-
-            <div class="form-row">
 
                 <div class="form-group">
-                    <label>Date</label>
-                    <input type="date" id="appointmentDate" required>
+
+                    <label>Appointment Time</label>
+
+                    <input
+                        type="time"
+                        id="appointmentTime"
+                        required
+                    >
+
                 </div>
+
 
                 <div class="form-group">
-                    <label>Time</label>
-                    <input type="time" id="appointmentTime" required>
+
+                    <label>Status</label>
+
+                    <select id="appointmentStatus">
+
+                        <option>
+                            Waiting
+                        </option>
+
+                        <option>
+                            Confirmed
+                        </option>
+
+                    </select>
+
                 </div>
 
             </div>
 
-            <div class="form-group">
-                <label>Reason for Visit</label>
-                <textarea
-                    id="reason"
-                    placeholder="Enter reason for visit"
-                    rows="3"
-                ></textarea>
-            </div>
 
-            <button type="submit" class="primary-btn full-width">
-                Book Appointment
+            <button
+                type="submit"
+                class="save-btn">
+
+                + Add Appointment
+
             </button>
 
         </form>
 
     </div>
+
 </div>
 
+
 <footer>
-    <p>© 2026 OP Clinic Appointment Planner</p>
+
+    © 2026 OP Clinic Appointment Planner
+
 </footer>
 
-<script src="script.js"></script>
+
+<script>
+
+/* =================================
+   INITIAL APPOINTMENTS
+================================= */
+
+let appointments = [
+
+    {
+        token: "OP-001",
+        patient: "Ravi Kumar",
+        age: 35,
+        doctor: "Dr. Sneha",
+        department: "General Medicine",
+        time: "09:30",
+        status: "Waiting"
+    },
+
+    {
+        token: "OP-002",
+        patient: "Lakshmi Devi",
+        age: 52,
+        doctor: "Dr. Kumar",
+        department: "Cardiology",
+        time: "10:00",
+        status: "Confirmed"
+    },
+
+    {
+        token: "OP-003",
+        patient: "Arjun Reddy",
+        age: 12,
+        doctor: "Dr. Anitha",
+        department: "Pediatrics",
+        time: "10:30",
+        status: "Completed"
+    },
+
+    {
+        token: "OP-004",
+        patient: "Suresh Babu",
+        age: 44,
+        doctor: "Dr. Rahul",
+        department: "Orthopedics",
+        time: "11:00",
+        status: "Waiting"
+    }
+
+];
+
+
+/* =================================
+   DISPLAY APPOINTMENTS
+================================= */
+
+function displayAppointments(data = appointments) {
+
+    const table =
+        document.getElementById(
+            "appointmentTable"
+        );
+
+    table.innerHTML = "";
+
+
+    data.forEach(
+        (appointment, index) => {
+
+            const row =
+                document.createElement("tr");
+
+
+            let statusClass =
+                appointment.status
+                    .toLowerCase();
+
+
+            let actions = "-";
+
+
+            if (
+                appointment.status !==
+                "Completed" &&
+                appointment.status !==
+                "Cancelled"
+            ) {
+
+                actions = `
+
+                    <button
+                        class="action-btn complete-btn"
+                        onclick="completeAppointment(${index})"
+                        title="Complete">
+                        ✓
+                    </button>
+
+                    <button
+                        class="action-btn cancel-btn"
+                        onclick="cancelAppointment(${index})"
+                        title="Cancel">
+                        ✕
+                    </button>
+
+                `;
+
+            }
+
+
+            row.innerHTML = `
+
+                <td class="token">
+                    ${appointment.token}
+                </td>
+
+                <td class="patient">
+                    ${appointment.patient}
+                </td>
+
+                <td>
+                    ${appointment.age}
+                </td>
+
+                <td>
+                    ${appointment.doctor}
+                </td>
+
+                <td>
+                    ${appointment.department}
+                </td>
+
+                <td>
+                    ${formatTime(
+                        appointment.time
+                    )}
+                </td>
+
+                <td>
+                    <span class="status ${statusClass}">
+                        ${appointment.status}
+                    </span>
+                </td>
+
+                <td>
+                    ${actions}
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+
+    updateStatistics();
+
+}
+
+
+/* =================================
+   FILTER
+================================= */
+
+function filterAppointments() {
+
+    const doctor =
+        document.getElementById(
+            "doctorFilter"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    const filtered =
+        appointments.filter(
+            appointment => {
+
+                const doctorMatch =
+                    doctor === "all" ||
+                    appointment.doctor === doctor;
+
+
+                const statusMatch =
+                    status === "all" ||
+                    appointment.status === status;
+
+
+                return (
+                    doctorMatch &&
+                    statusMatch
+                );
+
+            }
+        );
+
+
+    displayAppointments(filtered);
+
+}
+
+
+/* =================================
+   COMPLETE
+================================= */
+
+function completeAppointment(index) {
+
+    appointments[index].status =
+        "Completed";
+
+    displayAppointments();
+
+}
+
+
+/* =================================
+   CANCEL
+================================= */
+
+function cancelAppointment(index) {
+
+    if (
+        confirm(
+            "Cancel this appointment?"
+        )
+    ) {
+
+        appointments[index].status =
+            "Cancelled";
+
+        displayAppointments();
+
+    }
+
+}
+
+
+/* =================================
+   STATISTICS
+================================= */
+
+function updateStatistics() {
+
+    document.getElementById(
+        "totalAppointments"
+    ).textContent =
+        appointments.length;
+
+
+    document.getElementById(
+        "waitingCount"
+    ).textContent =
+        appointments.filter(
+            a => a.status === "Waiting"
+        ).length;
+
+
+    document.getElementById(
+        "completedCount"
+    ).textContent =
+        appointments.filter(
+            a => a.status === "Completed"
+        ).length;
+
+}
+
+
+/* =================================
+   TIME FORMAT
+================================= */
+
+function formatTime(time) {
+
+    let [hours, minutes] =
+        time.split(":");
+
+
+    hours =
+        parseInt(hours);
+
+
+    const period =
+        hours >= 12
+            ? "PM"
+            : "AM";
+
+
+    hours =
+        hours % 12 || 12;
+
+
+    return (
+        hours +
+        ":" +
+        minutes +
+        " " +
+        period
+    );
+
+}
+
+
+/* =================================
+   MODAL
+================================= */
+
+function openModal() {
+
+    document.getElementById(
+        "appointmentModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+function closeModal() {
+
+    document.getElementById(
+        "appointmentModal"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =================================
+   ADD APPOINTMENT
+================================= */
+
+document.getElementById(
+    "appointmentForm"
+).addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const nextNumber =
+            appointments.length + 1;
+
+
+        const newAppointment = {
+
+            token:
+                "OP-" +
+                String(nextNumber)
+                    .padStart(3, "0"),
+
+            patient:
+                document.getElementById(
+                    "patientName"
+                ).value,
+
+            age:
+                document.getElementById(
+                    "patientAge"
+                ).value,
+
+            doctor:
+                document.getElementById(
+                    "doctor"
+                ).value,
+
+            department:
+                document.getElementById(
+                    "department"
+                ).value,
+
+            time:
+                document.getElementById(
+                    "appointmentTime"
+                ).value,
+
+            status:
+                document.getElementById(
+                    "appointmentStatus"
+                ).value
+
+        };
+
+
+        appointments.push(
+            newAppointment
+        );
+
+
+        displayAppointments();
+
+
+        document.getElementById(
+            "appointmentForm"
+        ).reset();
+
+
+        closeModal();
+
+    }
+);
+
+
+/* =================================
+   INITIAL DISPLAY
+================================= */
+
+displayAppointments();
+
+</script>
 
 </body>
 </html>
