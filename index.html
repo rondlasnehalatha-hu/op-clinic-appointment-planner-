@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>OP Clinic Appointment Planner</title>
+<title>Outpatient Clinic - Appointment Planner</title>
 
 <style>
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
@@ -31,12 +30,12 @@ body {
 
 .logo h1 {
     color: #0f766e;
-    font-size: 27px;
+    font-size: 28px;
 }
 
 .logo p {
     color: #64748b;
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
 .new-btn {
@@ -45,9 +44,9 @@ body {
     border: none;
     padding: 13px 20px;
     border-radius: 8px;
-    font-size: 15px;
-    font-weight: bold;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .new-btn:hover {
@@ -56,37 +55,37 @@ body {
 
 /* MAIN */
 .container {
-    width: 88%;
-    max-width: 1250px;
+    width: 90%;
+    max-width: 1300px;
     margin: 30px auto;
 }
 
-/* STATISTICS */
+/* STAT CARDS */
 .stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
     margin-bottom: 30px;
 }
 
 .stat {
     background: white;
-    padding: 22px;
+    padding: 20px;
     border-radius: 12px;
     border: 1px solid #e2e8f0;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
 }
 
 .stat-icon {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
     border-radius: 10px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 25px;
+    align-items: center;
+    font-size: 24px;
 }
 
 .blue {
@@ -101,42 +100,47 @@ body {
     background: #dcfce7;
 }
 
+.red {
+    background: #fee2e2;
+}
+
 .purple {
     background: #ede9fe;
 }
 
 .stat h2 {
-    font-size: 27px;
+    font-size: 26px;
 }
 
 .stat p {
     color: #64748b;
+    font-size: 13px;
     margin-top: 4px;
 }
 
-/* SECTIONS */
+/* SECTION */
 .section {
     background: white;
-    padding: 25px;
-    border-radius: 12px;
     border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
     margin-bottom: 30px;
 }
 
 .section-header {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .section-header h2 {
     font-size: 22px;
-    margin-bottom: 6px;
 }
 
 .section-header p {
     color: #64748b;
+    margin-top: 5px;
 }
 
-/* FILTERS */
+/* FILTER */
 .filters {
     display: flex;
     gap: 12px;
@@ -147,9 +151,7 @@ body {
     padding: 11px 14px;
     border: 1px solid #cbd5e1;
     border-radius: 7px;
-    background: white;
-    min-width: 160px;
-    outline: none;
+    min-width: 170px;
 }
 
 /* TABLE */
@@ -160,7 +162,7 @@ body {
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 900px;
+    min-width: 1000px;
 }
 
 thead {
@@ -195,7 +197,6 @@ tr:hover {
 
 /* STATUS */
 .status {
-    display: inline-block;
     padding: 6px 11px;
     border-radius: 20px;
     font-size: 12px;
@@ -222,15 +223,19 @@ tr:hover {
     color: #991b1b;
 }
 
-/* ACTION */
+/* BUTTONS */
 .action-btn {
     border: none;
-    width: 32px;
-    height: 32px;
+    padding: 7px 9px;
     border-radius: 6px;
     cursor: pointer;
-    margin-right: 5px;
+    margin-right: 4px;
     font-weight: bold;
+}
+
+.confirm-btn {
+    background: #dbeafe;
+    color: #1d4ed8;
 }
 
 .complete-btn {
@@ -253,41 +258,47 @@ tr:hover {
 .doctor-card {
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    padding: 22px;
-    background: #ffffff;
+    padding: 20px;
 }
 
 .doctor-top {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .doctor-icon {
-    width: 55px;
-    height: 55px;
-    background: #ccfbf1;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
+    background: #ccfbf1;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 26px;
 }
 
 .doctor-card h3 {
     margin-bottom: 5px;
 }
 
-.doctor-department {
+.department {
     color: #0f766e;
-    font-weight: bold;
     font-size: 14px;
+    font-weight: bold;
 }
 
-.doctor-time {
-    margin-top: 17px;
+.time {
     color: #64748b;
-    font-size: 14px;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+/* EMPTY */
+.empty {
+    text-align: center;
+    padding: 30px;
+    color: #64748b;
 }
 
 /* MODAL */
@@ -295,7 +306,7 @@ tr:hover {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.55);
+    background: rgba(15, 23, 42, 0.6);
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -303,8 +314,10 @@ tr:hover {
 
 .modal-box {
     background: white;
-    width: 90%;
+    width: 92%;
     max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
     border-radius: 14px;
     padding: 28px;
 }
@@ -318,7 +331,7 @@ tr:hover {
 .close {
     border: none;
     background: none;
-    font-size: 25px;
+    font-size: 28px;
     cursor: pointer;
 }
 
@@ -334,13 +347,13 @@ tr:hover {
     gap: 7px;
 }
 
-.form-group.full {
+.full {
     grid-column: 1 / -1;
 }
 
 .form-group label {
-    font-weight: bold;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .form-group input,
@@ -348,33 +361,33 @@ tr:hover {
     padding: 12px;
     border: 1px solid #cbd5e1;
     border-radius: 7px;
-    outline: none;
 }
 
 .save-btn {
+    width: 100%;
     margin-top: 20px;
     background: #0f766e;
     color: white;
     border: none;
-    padding: 13px 22px;
-    border-radius: 7px;
-    cursor: pointer;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 /* FOOTER */
 footer {
-    text-align: center;
-    padding: 25px;
     background: #0f172a;
     color: white;
-    margin-top: 40px;
+    text-align: center;
+    padding: 25px;
 }
 
 /* RESPONSIVE */
-@media(max-width: 900px) {
+@media(max-width: 1000px) {
     .stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .doctors {
@@ -382,31 +395,31 @@ footer {
     }
 }
 
-@media(max-width: 600px) {
+@media(max-width: 650px) {
     .header {
         flex-direction: column;
-        gap: 15px;
         align-items: flex-start;
+        gap: 15px;
     }
 
     .stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .doctors {
         grid-template-columns: 1fr;
-    }
-
-    .filters {
-        flex-direction: column;
     }
 
     .form-grid {
         grid-template-columns: 1fr;
     }
 
-    .form-group.full {
+    .full {
         grid-column: auto;
+    }
+
+    .filters {
+        flex-direction: column;
     }
 }
 </style>
@@ -437,7 +450,7 @@ footer {
         <div class="stat">
             <div class="stat-icon blue">📅</div>
             <div>
-                <h2 id="totalAppointments">4</h2>
+                <h2 id="total">0</h2>
                 <p>Total Appointments</p>
             </div>
         </div>
@@ -445,7 +458,7 @@ footer {
         <div class="stat">
             <div class="stat-icon orange">⏳</div>
             <div>
-                <h2 id="waitingCount">2</h2>
+                <h2 id="waiting">0</h2>
                 <p>Waiting</p>
             </div>
         </div>
@@ -453,8 +466,16 @@ footer {
         <div class="stat">
             <div class="stat-icon green">✅</div>
             <div>
-                <h2 id="completedCount">1</h2>
+                <h2 id="completed">0</h2>
                 <p>Completed</p>
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon red">❌</div>
+            <div>
+                <h2 id="cancelled">0</h2>
+                <p>Cancelled</p>
             </div>
         </div>
 
@@ -469,45 +490,25 @@ footer {
     </div>
 
 
-    <!-- APPOINTMENTS -->
+    <!-- TODAY'S APPOINTMENTS -->
     <section class="section">
 
         <div class="section-header">
-
-            <h2>Today's Appointments</h2>
-
-            <p>
-                Manage outpatient appointments
-            </p>
-
+            <h2>📅 Today's Appointments</h2>
+            <p>Manage multiple outpatient appointments</p>
         </div>
 
 
-        <!-- FILTERS -->
         <div class="filters">
 
             <select id="doctorFilter"
                     onchange="filterAppointments()">
 
-                <option value="all">
-                    All Doctors
-                </option>
-
-                <option value="Dr. Sneha">
-                    Dr. Sneha
-                </option>
-
-                <option value="Dr. Kumar">
-                    Dr. Kumar
-                </option>
-
-                <option value="Dr. Anitha">
-                    Dr. Anitha
-                </option>
-
-                <option value="Dr. Rahul">
-                    Dr. Rahul
-                </option>
+                <option value="all">All Doctors</option>
+                <option value="Dr. Sneha">Dr. Sneha</option>
+                <option value="Dr. Kumar">Dr. Kumar</option>
+                <option value="Dr. Anitha">Dr. Anitha</option>
+                <option value="Dr. Rahul">Dr. Rahul</option>
 
             </select>
 
@@ -515,32 +516,17 @@ footer {
             <select id="statusFilter"
                     onchange="filterAppointments()">
 
-                <option value="all">
-                    All Status
-                </option>
-
-                <option value="Waiting">
-                    Waiting
-                </option>
-
-                <option value="Confirmed">
-                    Confirmed
-                </option>
-
-                <option value="Completed">
-                    Completed
-                </option>
-
-                <option value="Cancelled">
-                    Cancelled
-                </option>
+                <option value="all">All Status</option>
+                <option value="Waiting">Waiting</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
 
             </select>
 
         </div>
 
 
-        <!-- TABLE -->
         <div class="table-container">
 
             <table>
@@ -560,8 +546,48 @@ footer {
 
                 </thead>
 
-                <tbody id="appointmentTable">
-                </tbody>
+                <tbody id="appointmentTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPLETED PATIENTS -->
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>✅ Completed Patients</h2>
+
+            <p>
+                Patient appointments completed by doctors
+            </p>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Token</th>
+                        <th>Patient</th>
+                        <th>Age</th>
+                        <th>Doctor</th>
+                        <th>Department</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="completedTable"></tbody>
 
             </table>
 
@@ -574,9 +600,7 @@ footer {
     <section class="section">
 
         <div class="section-header">
-
-            <h2>Doctors</h2>
-
+            <h2>👨‍⚕️ Doctors</h2>
         </div>
 
 
@@ -586,20 +610,18 @@ footer {
 
                 <div class="doctor-top">
 
-                    <div class="doctor-icon">
-                        👩‍⚕️
-                    </div>
+                    <div class="doctor-icon">👩‍⚕️</div>
 
                     <div>
                         <h3>Dr. Sneha</h3>
-                        <p class="doctor-department">
+                        <p class="department">
                             General Medicine
                         </p>
                     </div>
 
                 </div>
 
-                <p class="doctor-time">
+                <p class="time">
                     Mon - Fri | 9:00 AM - 1:00 PM
                 </p>
 
@@ -610,20 +632,18 @@ footer {
 
                 <div class="doctor-top">
 
-                    <div class="doctor-icon">
-                        👨‍⚕️
-                    </div>
+                    <div class="doctor-icon">👨‍⚕️</div>
 
                     <div>
                         <h3>Dr. Kumar</h3>
-                        <p class="doctor-department">
+                        <p class="department">
                             Cardiology
                         </p>
                     </div>
 
                 </div>
 
-                <p class="doctor-time">
+                <p class="time">
                     Mon - Sat | 10:00 AM - 2:00 PM
                 </p>
 
@@ -634,20 +654,18 @@ footer {
 
                 <div class="doctor-top">
 
-                    <div class="doctor-icon">
-                        👩‍⚕️
-                    </div>
+                    <div class="doctor-icon">👩‍⚕️</div>
 
                     <div>
                         <h3>Dr. Anitha</h3>
-                        <p class="doctor-department">
+                        <p class="department">
                             Pediatrics
                         </p>
                     </div>
 
                 </div>
 
-                <p class="doctor-time">
+                <p class="time">
                     Mon - Fri | 9:30 AM - 1:30 PM
                 </p>
 
@@ -658,20 +676,18 @@ footer {
 
                 <div class="doctor-top">
 
-                    <div class="doctor-icon">
-                        👨‍⚕️
-                    </div>
+                    <div class="doctor-icon">👨‍⚕️</div>
 
                     <div>
                         <h3>Dr. Rahul</h3>
-                        <p class="doctor-department">
+                        <p class="department">
                             Orthopedics
                         </p>
                     </div>
 
                 </div>
 
-                <p class="doctor-time">
+                <p class="time">
                     Tue - Sat | 11:00 AM - 3:00 PM
                 </p>
 
@@ -686,13 +702,13 @@ footer {
 
 <!-- NEW APPOINTMENT MODAL -->
 
-<div class="modal" id="appointmentModal">
+<div class="modal" id="modal">
 
     <div class="modal-box">
 
         <div class="modal-header">
 
-            <h2>New Appointment</h2>
+            <h2>➕ Book New OP Appointment</h2>
 
             <button class="close"
                     onclick="closeModal()">
@@ -726,8 +742,10 @@ footer {
 
                     <input
                         type="number"
-                        id="patientAge"
-                        placeholder="Age"
+                        id="age"
+                        min="1"
+                        max="120"
+                        placeholder="Enter age"
                         required
                     >
 
@@ -744,19 +762,19 @@ footer {
                             Select Doctor
                         </option>
 
-                        <option>
+                        <option value="Dr. Sneha">
                             Dr. Sneha
                         </option>
 
-                        <option>
+                        <option value="Dr. Kumar">
                             Dr. Kumar
                         </option>
 
-                        <option>
+                        <option value="Dr. Anitha">
                             Dr. Anitha
                         </option>
 
-                        <option>
+                        <option value="Dr. Rahul">
                             Dr. Rahul
                         </option>
 
@@ -775,19 +793,19 @@ footer {
                             Select Department
                         </option>
 
-                        <option>
+                        <option value="General Medicine">
                             General Medicine
                         </option>
 
-                        <option>
+                        <option value="Cardiology">
                             Cardiology
                         </option>
 
-                        <option>
+                        <option value="Pediatrics">
                             Pediatrics
                         </option>
 
-                        <option>
+                        <option value="Orthopedics">
                             Orthopedics
                         </option>
 
@@ -798,11 +816,11 @@ footer {
 
                 <div class="form-group">
 
-                    <label>Appointment Time</label>
+                    <label>Appointment Date</label>
 
                     <input
-                        type="time"
-                        id="appointmentTime"
+                        type="date"
+                        id="date"
                         required
                     >
 
@@ -811,15 +829,28 @@ footer {
 
                 <div class="form-group">
 
-                    <label>Status</label>
+                    <label>Appointment Time</label>
 
-                    <select id="appointmentStatus">
+                    <input
+                        type="time"
+                        id="time"
+                        required
+                    >
 
-                        <option>
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>Appointment Status</label>
+
+                    <select id="status">
+
+                        <option value="Waiting">
                             Waiting
                         </option>
 
-                        <option>
+                        <option value="Confirmed">
                             Confirmed
                         </option>
 
@@ -830,11 +861,10 @@ footer {
             </div>
 
 
-            <button
-                type="submit"
-                class="save-btn">
+            <button class="save-btn"
+                    type="submit">
 
-                + Add Appointment
+                📅 Book OP Appointment
 
             </button>
 
@@ -854,11 +884,11 @@ footer {
 
 <script>
 
-/* =================================
-   INITIAL APPOINTMENTS
-================================= */
+/* ==========================================
+   DATA
+========================================== */
 
-let appointments = [
+const defaultAppointments = [
 
     {
         token: "OP-001",
@@ -866,6 +896,7 @@ let appointments = [
         age: 35,
         doctor: "Dr. Sneha",
         department: "General Medicine",
+        date: getToday(),
         time: "09:30",
         status: "Waiting"
     },
@@ -876,6 +907,7 @@ let appointments = [
         age: 52,
         doctor: "Dr. Kumar",
         department: "Cardiology",
+        date: getToday(),
         time: "10:00",
         status: "Confirmed"
     },
@@ -886,6 +918,7 @@ let appointments = [
         age: 12,
         doctor: "Dr. Anitha",
         department: "Pediatrics",
+        date: getToday(),
         time: "10:30",
         status: "Completed"
     },
@@ -896,6 +929,7 @@ let appointments = [
         age: 44,
         doctor: "Dr. Rahul",
         department: "Orthopedics",
+        date: getToday(),
         time: "11:00",
         status: "Waiting"
     }
@@ -903,9 +937,90 @@ let appointments = [
 ];
 
 
-/* =================================
-   DISPLAY APPOINTMENTS
-================================= */
+/* ==========================================
+   LOCAL STORAGE
+========================================== */
+
+let appointments =
+    JSON.parse(
+        localStorage.getItem(
+            "clinicAppointments"
+        )
+    ) || defaultAppointments;
+
+
+/* ==========================================
+   TODAY
+========================================== */
+
+function getToday() {
+
+    const today = new Date();
+
+    const year =
+        today.getFullYear();
+
+    const month =
+        String(
+            today.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            today.getDate()
+        ).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+
+/* ==========================================
+   SAVE
+========================================== */
+
+function saveData() {
+
+    localStorage.setItem(
+        "clinicAppointments",
+        JSON.stringify(appointments)
+    );
+
+}
+
+
+/* ==========================================
+   GENERATE TOKEN
+========================================== */
+
+function generateToken() {
+
+    let highest = 0;
+
+    appointments.forEach(
+        appointment => {
+
+            const number =
+                parseInt(
+                    appointment.token
+                        .replace("OP-", "")
+                );
+
+            if (number > highest) {
+                highest = number;
+            }
+
+        }
+    );
+
+    return "OP-" +
+        String(highest + 1)
+            .padStart(3, "0");
+}
+
+
+/* ==========================================
+   DISPLAY TODAY APPOINTMENTS
+========================================== */
 
 function displayAppointments(data = appointments) {
 
@@ -917,14 +1032,48 @@ function displayAppointments(data = appointments) {
     table.innerHTML = "";
 
 
-    data.forEach(
-        (appointment, index) => {
+    const today =
+        getToday();
+
+
+    const todayAppointments =
+        data.filter(
+            appointment =>
+                appointment.date === today
+        );
+
+
+    if (todayAppointments.length === 0) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="8"
+                    class="empty">
+                    No appointments found.
+                </td>
+            </tr>
+        `;
+
+        updateStatistics();
+        displayCompletedPatients();
+        return;
+    }
+
+
+    todayAppointments.forEach(
+        appointment => {
+
+            const originalIndex =
+                appointments.indexOf(
+                    appointment
+                );
+
 
             const row =
                 document.createElement("tr");
 
 
-            let statusClass =
+            const statusClass =
                 appointment.status
                     .toLowerCase();
 
@@ -933,25 +1082,45 @@ function displayAppointments(data = appointments) {
 
 
             if (
-                appointment.status !==
-                "Completed" &&
-                appointment.status !==
-                "Cancelled"
+                appointment.status ===
+                "Waiting"
+            ) {
+
+                actions = `
+
+                    <button
+                        class="action-btn confirm-btn"
+                        onclick="confirmAppointment(${originalIndex})">
+                        ✓ Confirm
+                    </button>
+
+                    <button
+                        class="action-btn cancel-btn"
+                        onclick="cancelAppointment(${originalIndex})">
+                        ✕
+                    </button>
+
+                `;
+
+            }
+
+
+            else if (
+                appointment.status ===
+                "Confirmed"
             ) {
 
                 actions = `
 
                     <button
                         class="action-btn complete-btn"
-                        onclick="completeAppointment(${index})"
-                        title="Complete">
-                        ✓
+                        onclick="completeAppointment(${originalIndex})">
+                        ✓ Complete
                     </button>
 
                     <button
                         class="action-btn cancel-btn"
-                        onclick="cancelAppointment(${index})"
-                        title="Cancel">
+                        onclick="cancelAppointment(${originalIndex})">
                         ✕
                     </button>
 
@@ -1009,12 +1178,162 @@ function displayAppointments(data = appointments) {
 
     updateStatistics();
 
+    displayCompletedPatients();
+
 }
 
 
-/* =================================
+/* ==========================================
+   COMPLETED PATIENTS
+========================================== */
+
+function displayCompletedPatients() {
+
+    const table =
+        document.getElementById(
+            "completedTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    const completed =
+        appointments.filter(
+            appointment =>
+                appointment.status ===
+                "Completed"
+        );
+
+
+    if (completed.length === 0) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="7"
+                    class="empty">
+                    No completed patients yet.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    completed.forEach(
+        appointment => {
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td class="token">
+                    ${appointment.token}
+                </td>
+
+                <td class="patient">
+                    ${appointment.patient}
+                </td>
+
+                <td>
+                    ${appointment.age}
+                </td>
+
+                <td>
+                    ${appointment.doctor}
+                </td>
+
+                <td>
+                    ${appointment.department}
+                </td>
+
+                <td>
+                    ${formatTime(
+                        appointment.time
+                    )}
+                </td>
+
+                <td>
+                    <span class="status completed">
+                        Completed
+                    </span>
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   CONFIRM
+========================================== */
+
+function confirmAppointment(index) {
+
+    appointments[index].status =
+        "Confirmed";
+
+    saveData();
+
+    displayAppointments();
+
+}
+
+
+/* ==========================================
+   COMPLETE
+========================================== */
+
+function completeAppointment(index) {
+
+    appointments[index].status =
+        "Completed";
+
+    saveData();
+
+    displayAppointments();
+
+}
+
+
+/* ==========================================
+   CANCEL
+========================================== */
+
+function cancelAppointment(index) {
+
+    const result =
+        confirm(
+            "Are you sure you want to cancel this appointment?"
+        );
+
+
+    if (result) {
+
+        appointments[index].status =
+            "Cancelled";
+
+        saveData();
+
+        displayAppointments();
+
+    }
+
+}
+
+
+/* ==========================================
    FILTER
-================================= */
+========================================== */
 
 function filterAppointments() {
 
@@ -1058,100 +1377,78 @@ function filterAppointments() {
 }
 
 
-/* =================================
-   COMPLETE
-================================= */
-
-function completeAppointment(index) {
-
-    appointments[index].status =
-        "Completed";
-
-    displayAppointments();
-
-}
-
-
-/* =================================
-   CANCEL
-================================= */
-
-function cancelAppointment(index) {
-
-    if (
-        confirm(
-            "Cancel this appointment?"
-        )
-    ) {
-
-        appointments[index].status =
-            "Cancelled";
-
-        displayAppointments();
-
-    }
-
-}
-
-
-/* =================================
+/* ==========================================
    STATISTICS
-================================= */
+========================================== */
 
 function updateStatistics() {
 
     document.getElementById(
-        "totalAppointments"
+        "total"
     ).textContent =
         appointments.length;
 
 
     document.getElementById(
-        "waitingCount"
+        "waiting"
     ).textContent =
         appointments.filter(
-            a => a.status === "Waiting"
+            a =>
+                a.status === "Waiting"
         ).length;
 
 
     document.getElementById(
-        "completedCount"
+        "completed"
     ).textContent =
         appointments.filter(
-            a => a.status === "Completed"
+            a =>
+                a.status === "Completed"
+        ).length;
+
+
+    document.getElementById(
+        "cancelled"
+    ).textContent =
+        appointments.filter(
+            a =>
+                a.status === "Cancelled"
         ).length;
 
 }
 
 
-/* =================================
+/* ==========================================
    TIME FORMAT
-================================= */
+========================================== */
 
 function formatTime(time) {
 
-    let [hours, minutes] =
+    if (!time) return "-";
+
+
+    let [hour, minute] =
         time.split(":");
 
 
-    hours =
-        parseInt(hours);
+    hour =
+        parseInt(hour);
 
 
     const period =
-        hours >= 12
+        hour >= 12
             ? "PM"
             : "AM";
 
 
-    hours =
-        hours % 12 || 12;
+    hour =
+        hour % 12 || 12;
 
 
     return (
-        hours +
+        hour +
         ":" +
-        minutes +
+        minute +
         " " +
         period
     );
@@ -1159,16 +1456,22 @@ function formatTime(time) {
 }
 
 
-/* =================================
+/* ==========================================
    MODAL
-================================= */
+========================================== */
 
 function openModal() {
 
     document.getElementById(
-        "appointmentModal"
+        "modal"
     ).style.display =
         "flex";
+
+
+    document.getElementById(
+        "date"
+    ).value =
+        getToday();
 
 }
 
@@ -1176,16 +1479,16 @@ function openModal() {
 function closeModal() {
 
     document.getElementById(
-        "appointmentModal"
+        "modal"
     ).style.display =
         "none";
 
 }
 
 
-/* =================================
-   ADD APPOINTMENT
-================================= */
+/* ==========================================
+   BOOK NEW APPOINTMENT
+========================================== */
 
 document.getElementById(
     "appointmentForm"
@@ -1196,25 +1499,19 @@ document.getElementById(
         event.preventDefault();
 
 
-        const nextNumber =
-            appointments.length + 1;
-
-
         const newAppointment = {
 
             token:
-                "OP-" +
-                String(nextNumber)
-                    .padStart(3, "0"),
+                generateToken(),
 
             patient:
                 document.getElementById(
                     "patientName"
-                ).value,
+                ).value.trim(),
 
             age:
                 document.getElementById(
-                    "patientAge"
+                    "age"
                 ).value,
 
             doctor:
@@ -1227,14 +1524,19 @@ document.getElementById(
                     "department"
                 ).value,
 
+            date:
+                document.getElementById(
+                    "date"
+                ).value,
+
             time:
                 document.getElementById(
-                    "appointmentTime"
+                    "time"
                 ).value,
 
             status:
                 document.getElementById(
-                    "appointmentStatus"
+                    "status"
                 ).value
 
         };
@@ -1245,7 +1547,7 @@ document.getElementById(
         );
 
 
-        displayAppointments();
+        saveData();
 
 
         document.getElementById(
@@ -1255,13 +1557,42 @@ document.getElementById(
 
         closeModal();
 
+
+        displayAppointments();
+
+
+        alert(
+            "Appointment booked successfully!\nToken: " +
+            newAppointment.token
+        );
+
     }
 );
 
 
-/* =================================
-   INITIAL DISPLAY
-================================= */
+/* ==========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================== */
+
+window.onclick =
+    function(event) {
+
+        const modal =
+            document.getElementById(
+                "modal"
+            );
+
+
+        if (event.target === modal) {
+            closeModal();
+        }
+
+    };
+
+
+/* ==========================================
+   START APPLICATION
+========================================== */
 
 displayAppointments();
 
